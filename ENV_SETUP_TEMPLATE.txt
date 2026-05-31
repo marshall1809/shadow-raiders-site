@@ -1,0 +1,12 @@
+# Copy this file to .env.local and fill in your values
+
+# Supabase — get these from supabase.com > your project > Settings > API
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+
+# Admin panel password — choose anything you like
+ADMIN_PASSWORD=your_secure_password_here
+
+# JWT secret — generate a long random string (e.g. openssl rand -base64 32)
+JWT_SECRET=your_jwt_secret_here

@@ -92,7 +92,7 @@ export default function App() {
         {current === 'academy'    && <AcademyPage    />}
         {current === 'join'       && <JoinPage       />}
         {current === 'leadership' && <LeadershipPage onNavigate={navigate} />}
-        {current === 'history'    && <HistoryPage    onNavigate={navigate} />}
+        {current === 'history'    && <HistoryPage    />}
         {current === 'schedule'   && <SchedulePage   />}
         {current === 'results'    && <ResultsPage    />}
         {current === 'faq'        && <FaqPage        />}

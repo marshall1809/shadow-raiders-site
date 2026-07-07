@@ -36,8 +36,8 @@ export default function Footer({ onNavigate }: FooterProps) {
             <div className="text-[#4a5c72] text-[0.65rem] font-semibold tracking-[0.22em] uppercase mb-4">Join</div>
             <div className="flex flex-col gap-2 mb-6">
               <button onClick={() => go('join')} className="text-left text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors cursor-pointer bg-transparent border-none p-0">Recruitment Path</button>
-              <a href="https://discord.gg/cmuGSVXQFN" target="_blank" rel="noopener noreferrer" className="text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors">Alliance Discord</a>
-              <a href="https://discord.gg/e7c3DDaJmp" target="_blank" rel="noopener noreferrer" className="text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors">Academy Discord</a>
+              <a href="https://discord.gg/cW8CefYnYt" target="_blank" rel="noopener noreferrer" className="text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors">Elite Discord</a>
+              <a href="https://discord.gg/e7c3DDaJmp" target="_blank" rel="noopener noreferrer" className="text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors">Raiders Assembly</a>
             </div>
             <div className="text-[#4a5c72] text-[0.65rem] font-semibold tracking-[0.22em] uppercase mb-3">Contact</div>
             <div className="font-mono-sr text-[#c8a840] text-sm mb-1">Marc1809</div>

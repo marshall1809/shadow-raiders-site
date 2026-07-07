@@ -1,5 +1,6 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import HomePage from '@/components/pages/HomePage'
@@ -39,8 +40,8 @@ const HOME_DISCORD_LINKS: HomeDiscordLink[] = [
 function HomeEntryHeader() {
   return (
     <section className="bg-[#04090f] border-b border-[rgba(200,168,64,0.14)]">
-      <div className="max-w-[1180px] mx-auto px-4 md:px-8 py-5 md:py-6">
-        <div className="flex items-center justify-center gap-3 mb-4">
+      <div className="max-w-[1180px] mx-auto px-4 md:px-8 py-4 md:py-5">
+        <div className="flex items-center justify-center gap-3">
           <div className="w-[42px] h-[42px] rounded-full border border-[#7a6420] flex items-center justify-center text-[#c8a840] text-base bg-[rgba(200,168,64,0.06)] shadow-[0_0_22px_rgba(200,168,64,0.14)] flex-shrink-0">
             ⚔
           </div>
@@ -49,36 +50,65 @@ function HomeEntryHeader() {
             <div className="font-mono-sr text-[#4a5c72] text-[0.62rem] tracking-widest mt-0.5 uppercase">Supremacy WW3 Alliance</div>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-[760px] mx-auto">
-          {HOME_DISCORD_LINKS.map(link => (
-            <a
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group flex items-center justify-between gap-4 px-4 py-2.5 rounded-sm border transition-all hover:-translate-y-px ${
-                link.tone === 'gold'
-                  ? 'border-[#7a6420] bg-[rgba(200,168,64,0.06)] hover:bg-[rgba(200,168,64,0.12)] hover:shadow-[0_4px_20px_rgba(200,168,64,0.18)]'
-                  : 'border-[#2e4f6a] bg-[rgba(90,130,168,0.06)] hover:bg-[rgba(90,130,168,0.12)] hover:shadow-[0_4px_20px_rgba(90,130,168,0.16)]'
-              }`}
-            >
-              <span className="min-w-0">
-                <span className={`block text-[0.7rem] sm:text-[0.74rem] font-semibold tracking-widest uppercase ${link.tone === 'gold' ? 'text-[#c8a840]' : 'text-[#7ca0c2]'}`}>
-                  {link.label}
-                </span>
-                <span className="block text-[#8090a8] text-[0.66rem] font-light mt-0.5 leading-snug">
-                  {link.note}
-                </span>
-              </span>
-              <span className={`text-sm transition-transform group-hover:translate-x-1 ${link.tone === 'gold' ? 'text-[#c8a840]' : 'text-[#7ca0c2]'}`} aria-hidden="true">
-                →
-              </span>
-            </a>
-          ))}
-        </div>
       </div>
     </section>
+  )
+}
+
+function HomeHeroDiscordCards() {
+  const [target, setTarget] = useState<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const heroTitle = document.querySelector('section h1')
+    if (!heroTitle) return
+
+    let slot = document.getElementById('home-hero-discord-slot')
+    if (!slot) {
+      slot = document.createElement('div')
+      slot.id = 'home-hero-discord-slot'
+      slot.className = 'mt-6 mb-6 w-full max-w-[760px] mx-auto'
+      heroTitle.insertAdjacentElement('afterend', slot)
+    }
+
+    setTarget(slot)
+
+    return () => {
+      slot?.remove()
+      setTarget(null)
+    }
+  }, [])
+
+  if (!target) return null
+
+  return createPortal(
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      {HOME_DISCORD_LINKS.map(link => (
+        <a
+          key={link.href}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`group flex items-center justify-between gap-4 px-4 py-2.5 rounded-sm border transition-all hover:-translate-y-px ${
+            link.tone === 'gold'
+              ? 'border-[#7a6420] bg-[rgba(200,168,64,0.06)] hover:bg-[rgba(200,168,64,0.12)] hover:shadow-[0_4px_20px_rgba(200,168,64,0.18)]'
+              : 'border-[#2e4f6a] bg-[rgba(90,130,168,0.06)] hover:bg-[rgba(90,130,168,0.12)] hover:shadow-[0_4px_20px_rgba(90,130,168,0.16)]'
+          }`}
+        >
+          <span className="min-w-0 text-left">
+            <span className={`block text-[0.7rem] sm:text-[0.74rem] font-semibold tracking-widest uppercase ${link.tone === 'gold' ? 'text-[#c8a840]' : 'text-[#7ca0c2]'}`}>
+              {link.label}
+            </span>
+            <span className="block text-[#8090a8] text-[0.66rem] font-light mt-0.5 leading-snug">
+              {link.note}
+            </span>
+          </span>
+          <span className={`text-sm transition-transform group-hover:translate-x-1 ${link.tone === 'gold' ? 'text-[#c8a840]' : 'text-[#7ca0c2]'}`} aria-hidden="true">
+            →
+          </span>
+        </a>
+      ))}
+    </div>,
+    target,
   )
 }
 
@@ -95,6 +125,7 @@ export default function App() {
       <Nav current={current} onNavigate={navigate} showBrand={current !== 'home'} />
       <div className="flex-1">
         {current === 'home'       && <HomePage       onNavigate={navigate} />}
+        {current === 'home'       && <HomeHeroDiscordCards />}
         {current === 'alliance'   && <AlliancePage   />}
         {current === 'academy'    && <AcademyPage    />}
         {current === 'join'       && <JoinPage       />}

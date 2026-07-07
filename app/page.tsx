@@ -22,6 +22,8 @@ type HomeDiscordLink = {
   tone: 'gold' | 'blue'
 }
 
+const VALID_PAGES: Page[] = ['home', 'alliance', 'academy', 'join', 'leadership', 'history', 'schedule', 'results', 'faq']
+
 const HOME_DISCORD_LINKS: HomeDiscordLink[] = [
   {
     label: 'Shadow Raiders Elite Discord',
@@ -115,8 +117,17 @@ function HomeHeroDiscordCards() {
 export default function App() {
   const [current, setCurrent] = useState<Page>('home')
 
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get('page')
+    if (requested && VALID_PAGES.includes(requested as Page)) {
+      setCurrent(requested as Page)
+    }
+  }, [])
+
   function navigate(page: string) {
-    setCurrent(page as Page)
+    const nextPage = VALID_PAGES.includes(page as Page) ? page as Page : 'home'
+    setCurrent(nextPage)
+    window.history.replaceState(null, '', nextPage === 'home' ? '/' : `/?page=${nextPage}`)
   }
 
   return (

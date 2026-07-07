@@ -1,6 +1,20 @@
 'use client'
 
-const TIMELINE = [
+type TimelineItem = {
+  dot: string
+  year: string
+  title: string
+  desc: string
+  highlight?: boolean
+}
+
+type Quote = {
+  text: string
+  attr: string
+  faded?: boolean
+}
+
+const TIMELINE: TimelineItem[] = [
   {
     dot: '◎',
     year: 'June 2022 — Origins',
@@ -58,7 +72,7 @@ const TIMELINE = [
   },
 ]
 
-const QUOTES = [
+const QUOTES: Quote[] = [
   { text: 'There are many great people there.', attr: 'Anonymous SR Member' },
   { text: "Marc's daily good morning messages are always a fun competition to see who answers back first.", attr: 'Him — SR Member' },
   { text: 'A place where I feel at home and welcome.', attr: 'Anonymous SR Member' },

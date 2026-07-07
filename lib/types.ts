@@ -50,6 +50,23 @@ export interface FaqItem {
   updated_at: string
 }
 
+export interface HallOfFameProfile {
+  id: string
+  display_name: string
+  role_title?: string | null
+  short_description: string
+  biography?: string | null
+  avatar_url?: string | null
+  avatar_path?: string | null
+  inducted_at?: string | null
+  tags?: string[] | null
+  status?: string | null
+  sort_order?: number | null
+  is_public: boolean
+  created_at: string
+  updated_at: string
+}
+
 export const COMPETITION_LABELS: Record<Competition, string> = {
   rise: 'Rise League',
   cfc: 'CFC',

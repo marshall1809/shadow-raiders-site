@@ -24,7 +24,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <Nav current={current} onNavigate={navigate} />
-      <div className="flex-1 pt-[62px]">
+      <div className="flex-1">
         {current === 'home'       && <HomePage       onNavigate={navigate} />}
         {current === 'alliance'   && <AlliancePage   />}
         {current === 'academy'    && <AcademyPage    />}

@@ -5,6 +5,7 @@ const NAV_ITEMS = [
   { id: 'home',       label: 'Home' },
   { id: 'alliance',   label: 'Alliance' },
   { id: 'academy',    label: 'Academy' },
+  { id: 'join',       label: 'Join' },
   { id: 'leadership', label: 'Leadership' },
   { id: 'history',    label: 'History' },
   { id: 'schedule',   label: 'Schedule' },
@@ -42,7 +43,7 @@ export default function Nav({ current, onNavigate }: NavProps) {
         </button>
 
         {/* Desktop links */}
-        <ul className="hidden lg:flex gap-0 list-none">
+        <ul className="hidden xl:flex gap-0 list-none">
           {NAV_ITEMS.map(item => (
             <li key={item.id}>
               {(item as any).href ? (
@@ -71,7 +72,7 @@ export default function Nav({ current, onNavigate }: NavProps) {
           href="https://discord.gg/cmuGSVXQFN"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden lg:inline-flex items-center px-5 py-2 border border-[#c8a840] text-[#c8a840] text-[0.72rem] font-semibold tracking-widest uppercase rounded-sm transition-all hover:bg-[#c8a840] hover:text-[#04090f] hover:shadow-[0_0_20px_rgba(200,168,64,0.3)]"
+          className="hidden xl:inline-flex items-center px-5 py-2 border border-[#c8a840] text-[#c8a840] text-[0.72rem] font-semibold tracking-widest uppercase rounded-sm transition-all hover:bg-[#c8a840] hover:text-[#04090f] hover:shadow-[0_0_20px_rgba(200,168,64,0.3)]"
         >
           Join Now
         </a>
@@ -79,7 +80,7 @@ export default function Nav({ current, onNavigate }: NavProps) {
         {/* Hamburger */}
         <button
           onClick={() => setDrawerOpen(!drawerOpen)}
-          className="lg:hidden flex flex-col gap-[5px] p-1 cursor-pointer bg-transparent border-none"
+          className="xl:hidden flex flex-col gap-[5px] p-1 cursor-pointer bg-transparent border-none"
           aria-label="Menu"
         >
           <span className={`block w-[22px] h-[1.5px] bg-[#8090a8] transition-all ${drawerOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`} />

@@ -115,7 +115,7 @@ export default function JoinPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.06)] rounded-sm overflow-hidden">
             {PATH_CARDS.map(path => (
               <article key={path.title} className={`group p-8 md:p-10 transition-colors relative ${path.featured ? 'bg-[rgba(14,32,53,0.72)] hover:bg-[#0e2035]' : 'bg-[#0a1828] hover:bg-[#0e2035]'}`}>
-                <div className={`absolute top-0 left-0 right-0 h-px bg-[linear-gradient(90deg,transparent,${path.featured ? '#c8a840' : '#5a82a8'},transparent)] opacity-80`} />
+                <div className={`absolute top-0 left-0 right-0 h-px ${path.featured ? 'bg-[linear-gradient(90deg,transparent,#c8a840,transparent)]' : 'bg-[linear-gradient(90deg,transparent,#5a82a8,transparent)]'} opacity-80`} />
                 <p className={`font-mono-sr text-[0.58rem] tracking-[0.22em] uppercase mb-3 ${path.featured ? 'text-[#7a6420]' : 'text-[#2e4f6a]'}`}>
                   {path.label}
                 </p>

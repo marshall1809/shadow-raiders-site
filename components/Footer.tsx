@@ -4,6 +4,8 @@ interface FooterProps {
   onNavigate: (page: string) => void
 }
 
+const FOOTER_PAGES = ['alliance','academy','join','leadership','history','schedule','results','faq']
+
 export default function Footer({ onNavigate }: FooterProps) {
   const go = (page: string) => {
     onNavigate(page)
@@ -23,13 +25,18 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div>
             <div className="text-[#4a5c72] text-[0.65rem] font-semibold tracking-[0.22em] uppercase mb-4">Pages</div>
             <ul className="flex flex-col gap-2">
-              {['alliance','academy','join','leadership','history','schedule','results','faq'].map(p => (
+              {FOOTER_PAGES.map(p => (
                 <li key={p}>
                   <button onClick={() => go(p)} className="text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors capitalize cursor-pointer bg-transparent border-none p-0">
                     {p === 'faq' ? 'FAQ' : p === 'join' ? 'Join' : p.charAt(0).toUpperCase() + p.slice(1)}
                   </button>
                 </li>
               ))}
+              <li>
+                <a href="/hall-of-fame" className="text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors">
+                  Hall of Fame
+                </a>
+              </li>
             </ul>
           </div>
           <div>

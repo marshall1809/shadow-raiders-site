@@ -23,10 +23,10 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div>
             <div className="text-[#4a5c72] text-[0.65rem] font-semibold tracking-[0.22em] uppercase mb-4">Pages</div>
             <ul className="flex flex-col gap-2">
-              {['alliance','academy','leadership','history','schedule','results','faq'].map(p => (
+              {['alliance','academy','join','leadership','history','schedule','results','faq'].map(p => (
                 <li key={p}>
                   <button onClick={() => go(p)} className="text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors capitalize cursor-pointer bg-transparent border-none p-0">
-                    {p === 'faq' ? 'FAQ' : p.charAt(0).toUpperCase() + p.slice(1)}
+                    {p === 'faq' ? 'FAQ' : p === 'join' ? 'Join' : p.charAt(0).toUpperCase() + p.slice(1)}
                   </button>
                 </li>
               ))}
@@ -35,6 +35,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div>
             <div className="text-[#4a5c72] text-[0.65rem] font-semibold tracking-[0.22em] uppercase mb-4">Join</div>
             <div className="flex flex-col gap-2 mb-6">
+              <button onClick={() => go('join')} className="text-left text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors cursor-pointer bg-transparent border-none p-0">Recruitment Path</button>
               <a href="https://discord.gg/cmuGSVXQFN" target="_blank" rel="noopener noreferrer" className="text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors">Alliance Discord</a>
               <a href="https://discord.gg/e7c3DDaJmp" target="_blank" rel="noopener noreferrer" className="text-[#8090a8] text-sm font-light hover:text-[#c8a840] transition-colors">Academy Discord</a>
             </div>

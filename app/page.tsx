@@ -14,7 +14,14 @@ import FaqPage from '@/components/pages/FaqPage'
 
 type Page = 'home' | 'alliance' | 'academy' | 'join' | 'leadership' | 'history' | 'schedule' | 'results' | 'faq'
 
-const HOME_DISCORD_LINKS = [
+type HomeDiscordLink = {
+  label: string
+  note: string
+  href: string
+  tone: 'gold' | 'blue'
+}
+
+const HOME_DISCORD_LINKS: HomeDiscordLink[] = [
   {
     label: 'Shadow Raiders Elite',
     note: 'For experienced players only',

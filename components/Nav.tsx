@@ -14,6 +14,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'join',       label: 'Join' },
   { id: 'leadership', label: 'Leadership' },
   { id: 'history',    label: 'History' },
+  { id: 'hall-of-fame', label: 'Hall of Fame', href: '/hall-of-fame' },
   { id: 'schedule',   label: 'Schedule' },
   { id: 'results',    label: 'Results' },
   { id: 'faq',        label: 'FAQ' },
@@ -58,7 +59,9 @@ export default function Nav({ current, onNavigate, showBrand = true }: NavProps)
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="h-[46px] px-3 text-[0.68rem] font-medium tracking-widest uppercase border-b-2 border-transparent transition-all cursor-pointer flex items-center text-[#4a5c72] hover:text-[#c8a840]"
+                      className={`h-[46px] px-3 text-[0.68rem] font-medium tracking-widest uppercase border-b-2 transition-all cursor-pointer flex items-center ${
+                        current === item.id ? 'text-[#c8a840] border-[#c8a840]' : 'text-[#4a5c72] border-transparent hover:text-[#c8a840]'
+                      }`}
                     >
                       {item.label}
                     </a>
@@ -101,7 +104,7 @@ export default function Nav({ current, onNavigate, showBrand = true }: NavProps)
                 <a
                   key={item.id}
                   href={item.href}
-                  className="text-left py-3.5 px-0 text-sm font-medium tracking-widest uppercase border-b border-[rgba(255,255,255,0.06)] text-[#8090a8] hover:text-[#c8a840] transition-colors"
+                  className={`text-left py-3.5 px-0 text-sm font-medium tracking-widest uppercase border-b border-[rgba(255,255,255,0.06)] transition-colors ${current === item.id ? 'text-[#c8a840]' : 'text-[#8090a8] hover:text-[#c8a840]'}`}
                 >
                   {item.label}
                 </a>

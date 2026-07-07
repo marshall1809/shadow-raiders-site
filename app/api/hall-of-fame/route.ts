@@ -103,16 +103,13 @@ export async function GET(req: NextRequest) {
   }
 
   const db = createServiceClient()
-  let query = db
-    .from('hall_of_fame_profiles')
-    .select('*')
+  const baseQuery = db.from('hall_of_fame_profiles').select('*')
+  const filteredQuery = includeHidden ? baseQuery : baseQuery.eq('is_public', true)
+  const { data, error } = await filteredQuery
     .order('sort_order', { ascending: true, nullsFirst: false })
     .order('inducted_at', { ascending: false, nullsFirst: false })
     .order('created_at', { ascending: false })
 
-  if (!includeHidden) query = query.eq('is_public', true)
-
-  const { data, error } = await query
   if (error) {
     if (!includeHidden) return NextResponse.json([])
     return NextResponse.json({ error: error.message }, { status: 500 })
